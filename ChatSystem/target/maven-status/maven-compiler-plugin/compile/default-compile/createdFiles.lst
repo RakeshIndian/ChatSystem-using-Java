@@ -1,7 +1,12 @@
 one_to_one\server\MyServer.class
 Main.class
+service\UserDAO.class
 one_to_one\OneToOneChat.class
 group_chat\ReadThread.class
+controller\UserController.class
+domain\User.class
 group_chat\GroupChat.class
 one_to_one\client\MyClient.class
+service\UserService.class
+db\MyDB.class
 one_to_one\ReadData.class

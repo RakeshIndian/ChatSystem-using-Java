@@ -7,6 +7,8 @@ import java.net.MulticastSocket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+import domain.User;
+
 public class GroupChat {
 
 	private static final String TERMINATE = "Exit";
@@ -57,6 +59,11 @@ public class GroupChat {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void start(User user) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
