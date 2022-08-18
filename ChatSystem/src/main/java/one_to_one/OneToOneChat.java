@@ -2,6 +2,7 @@ package one_to_one;
 
 import java.util.Scanner;
 
+import domain.User;
 import one_to_one.client.MyClient;
 import one_to_one.server.MyServer;
 
@@ -38,6 +39,11 @@ public class OneToOneChat {
 			MyClient.main(new String[] {name,ip,port} );
 		}
 	sc.close();	
+	}
+
+	public static void start(User user) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
