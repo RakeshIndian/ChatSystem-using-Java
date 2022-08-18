@@ -3,8 +3,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import controller.UserController;
-import group_chat.GroupChat;
-import one_to_one.OneToOneChat;
+import domain.User;
 
 public class Main {
 
@@ -16,6 +15,7 @@ public class Main {
 		String choice = null;
 		System.out.print("\n [ Email ] : ");
 		String email = sc.nextLine();
+		User user ;
 		do {
 			System.out.print("\n Are you already a user? [y/n] : ");
 			choice = sc.next();
@@ -25,9 +25,9 @@ public class Main {
 				System.out.println("Invalid Choice!!");
 		} while (true);
 		if (choice.equalsIgnoreCase("Y")) {
-			UserController.login(name,email);
+			user = UserController.login(name,email);
 		} else {
-			UserController.signUp(name,email);
+			user = UserController.signUp(name,email);
 		};
 		do {
 			System.out.print("\n Do you want to go for Group Chat? [y/n] : ");
@@ -37,7 +37,7 @@ public class Main {
 			else
 				System.out.println("Invalid Choice!!");
 		} while (true);
-		UserController.start(choice);
+		UserController.start(choice,user);
 		
 //		if (choice.equalsIgnoreCase("Y")) {
 //			GroupChat.main(new String[] { name });

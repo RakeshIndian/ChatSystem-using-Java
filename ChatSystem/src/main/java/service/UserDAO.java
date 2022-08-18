@@ -16,7 +16,7 @@ public class UserDAO {
         Statement st = con.createStatement();
         String sql_query = "insert into chatappuser(name,password,email,phone,ip) values('"+
         user.getName()+"','"+user.getPassword()+"','"+user.getEmail()+"','"+user.getPhone()+"','"+user.getIp()+"')";
-        int updateCount=st.executeUpdate(sql_query);
+        st.executeUpdate(sql_query);
         con.close();
     }
     public User getUserByEmail(String email) throws SQLException, ClassNotFoundException {

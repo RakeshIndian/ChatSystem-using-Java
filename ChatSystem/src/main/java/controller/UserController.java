@@ -15,13 +15,13 @@ public class UserController {
 	private static Scanner sc = new Scanner(System.in);
 	private static UserService userService = new UserService();
 
-	public static boolean login(String name,String email) throws ClassNotFoundException, SQLException, UnknownHostException {
+	public static User login(String name,String email) throws ClassNotFoundException, SQLException, UnknownHostException {
 		// TODO Auto-generated method stub
 
 		user = userService.getUserByEmail(email);
-		if (user.getEmail() != email) {
+//		System.out.println(user+"\n"+email);
+		if (!user.getEmail().equals(email)) {
 			System.out.println("Invalid Email. Email not registered!");
-
 			String choice = new String();
 			do {
 				System.out.print("Do you want to register ? [y/n]");
@@ -32,22 +32,22 @@ public class UserController {
 					System.out.println("Invalid Choice!");
 			} while (true);
 			if (choice.equalsIgnoreCase("Y"))
-				signUp(name,email);
+				return signUp(name,email);
 			else
-				login(name,email);
+				return login(name,email);
 		}
 		String password = new String();
 		for (int i = 0; i < 3; i++) {
 			System.out.print("\n [ Password ] : ");
 			password = sc.nextLine();
-			if (user.getPassword() == password)
-				return true;
+			if (user.getPassword().equals(password))
+				return user;
 			System.out.println("Incorrect Password");
 		}
-		return false;
+		return user;
 	}
 
-	public static boolean signUp(String name,String email) throws ClassNotFoundException, SQLException, UnknownHostException {
+	public static User signUp(String name,String email) throws ClassNotFoundException, SQLException, UnknownHostException {
 		// TODO Auto-generated method stub
 
 		user = userService.getUserByEmail(email);
@@ -62,12 +62,14 @@ public class UserController {
 		Long phone = sc.nextLong();
 		
 		String ip = InetAddress.getLocalHost().toString().split("/")[1]; 
-		return userService.registerUser(new User(name,password,email,phone,ip));		
-
+		user = new User(name,password,email,phone,ip);		
+		userService.registerUser(user);
+		return user;
 	}
 
-	public static void start(String choice) {
+	public static void start(String choice,User use) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
+		user = use;
 		if(choice.equalsIgnoreCase("Y")) GroupChat.start(user);
 		else OneToOneChat.start(user);
 	}
